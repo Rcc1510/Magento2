@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+        <add id="Kitchen_Notification::page" title="Nofication" translate="title" module="Kitchen_Notification" sortOrder="10" resource="Kitchen_Notification::page"/>
+
+        <add id="Kitchen_Notification::name" title="Notice" translate="title" module="Kitchen_Notification" sortOrder="30" parent="Kitchen_Notification::page" action="notice1/Index" resource="Kitchen_Notification::name"/>
+
+    </menu>
+
+</config>

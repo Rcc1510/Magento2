@@ -1,0 +1,57 @@
+<?php if (($block->CustomerCheck()) && !$block->isMarked()): ?>
+    <div style="display: none;" id="modal-notification">
+        <div id="popup">
+            <label>Title:</label><?php $block = $this->getTitles(); ?><br>
+            <label>Description:</label><?php $block = $this->getDesc(); ?><br>
+        </div>
+        <div>
+            <input type="checkbox" id="myCheckbox" name="myCheckbox" value="1">
+            <label for="myCheckbox">Mark Read</label>
+        </div>
+
+    </div>
+<?php endif; ?>
+
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal',
+        'mage/storage'
+    ], function($, modal, storage) {
+        var popupOptions = {
+            type: 'popup',
+            responsive: true,
+            innerScroll: true,
+            title: $.mage.__('Notification'),
+            buttons: [{
+                text: $.mage.__('Continue'),
+                class: 'mymodal1',
+                click: function() {
+                    $('#modal-notification').modal("closeModal");
+                }
+            }],
+            modalClass: 'mymodal1'
+        };
+
+        var popup = modal(popupOptions, $('#modal-notification'));
+        $('#modal-notification').modal("openModal");
+        
+        var checkBox = document.getElementById('myCheckbox').value;
+ 
+            $("#myCheckbox").click(function() {
+                storage.post(
+                    'notice/index/index',
+                    JSON.stringify({
+                        "field":'checkbox',
+                        "value": checkBox
+                    }),
+                    true
+                ).done(function(response) {
+ 
+                }).fail(function(response) {
+                    alert('main Error occurred.');
+                });
+            });
+});
+    
+</script>
