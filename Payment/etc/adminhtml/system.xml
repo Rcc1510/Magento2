@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+  <system>
+    <section id="payment" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="400" translate="label" type="text">
+      <group id="invoice30" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="101" translate="label" type="text">
+        <field canRestore="1" id="active" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="1" translate="label" type="select">
+          <label>Enabled</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field canRestore="1" id="allowspecific" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="50" translate="label" type="allowspecific">
+          <label>Payment from Applicable Countries</label>
+          <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+        </field>
+        <field canRestore="1" id="order_status" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="20" translate="label" type="select">
+          <label>New Order Status</label>
+          <source_model>Magento\Sales\Model\Config\Source\Order\Status\NewStatus</source_model>
+        </field>
+        <field canRestore="1" id="customer_group" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="20" translate="label" type="select">
+          <label>Customer Group</label>
+          <source_model>Kitchen\Payment\Model\Adminhtml\System\Config\Source\Customer\Group</source_model>
+        </field>
+        <!-- <field canRestore="1" id="retailer_customer_group" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="20" translate="label" type="select">
+          <label>Retailer Customer Group</label>
+          <source_model>Kitchen\Payment\Model\Adminhtml\System\Config\Source\Customer\Group</source_model>
+        </field>
+        <field canRestore="1" id="wholesale_customer_group" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="20" translate="label" type="select">
+          <label>Wholesale Customer Group</label>
+          <source_model>Kitchen\Payment\Model\Adminhtml\System\Config\Source\Customer\Group</source_model>
+        </field> -->
+        <field canRestore="1" id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+          <label>Title</label>
+        </field>
+        <field id="max_order_total" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="99" translate="label" type="text">
+          <label>Maximum Order Total</label>
+        </field>
+        <field id="min_order_total" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="98" translate="label" type="text">
+          <label>Minimum Order Total</label>
+        </field>
+        <field id="model"/>
+        <field id="sort_order" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="100" translate="label" type="text">
+          <frontend_class>validate-number</frontend_class>
+          <label>Sort Order</label>
+        </field>
+        <field id="specificcountry" showInDefault="1" showInStore="0" showInWebsite="1" sortOrder="51" translate="label" type="multiselect">
+          <can_be_empty>1</can_be_empty>
+          <label>Payment from Specific Countries</label>
+          <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+        </field>
+        <label>Offline Payment Method</label>
+      </group>
+    </section>
+  </system>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+  <default>
+    <payment>
+      <invoice30>
+        <active>1</active>
+        <allowspecific>0</allowspecific>
+        <group>offline</group>
+        <model>Kitchen\Payment\Model\Invoice30</model>
+        <order_status>pending</order_status>
+        <title>Offline Payment Method 1</title>
+      </invoice30>
+    </payment>
+  </default>
+</config>
