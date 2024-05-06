@@ -1,0 +1,29 @@
+<h2>Add Staff Form</h2>
+<!-- <h1><?php echo $block->escapeHtml($block->getWelcomeText()) ?></h1> -->
+
+
+
+<form action="<?php echo $this->getURL('comp/staff/save')?>" method= "POST">
+
+<input type="hidden" name="entity_id" value ="<?php echo $this->getRequest()->getparam("entity_id");?>">
+    
+<input type="text" name="parent_id" value ="<?php echo $block->getIds() ?>">
+    
+    <label>First Name :</label><br>
+    <input type="text" name="fname"><br>
+    
+    <label>Last Name :</label><br>
+    <input type="text" name="lname"><br>
+    
+    <label>Email :</label><br>
+    <input type="email" name="email"><br>
+
+    <label>Password :</label><br>
+    <input type="password" name="password"><br>
+    <br>
+    
+    <input type="submit" name="submit"><br>
+</form>
+<form action="<?= $this->getURl('comp/staff/index'); ?>" method="POST">
+        <button class="btn">Back</button>
+</form>

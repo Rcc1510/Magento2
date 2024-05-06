@@ -1,0 +1,25 @@
+<!-- <h3 class = "page-title"> Manage Staff </h3>  -->
+<h1><?php echo $block->escapeHtml($block->getWelcomeText()) ?></h1>
+<h1><?php echo $block->getIds() ?></h1>
+<form action="<?php echo $this->getUrl('comp/staff/create') ?>" method="post">
+    <button type="submit" name="submit" class="action primary">
+       Add New Staff
+    </button>
+</form>
+<h2> All Staff Details </h2>
+<table>
+    <tr>
+        <th>CID </th>
+        <th>Parent Id </th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Email</th>
+        <th>Created At </th>
+        <th>Updated At </th>
+        <th>Actions</th>
+</tr>
+        <?php
+            $block->Display();    
+        ?>
+
+</table>
