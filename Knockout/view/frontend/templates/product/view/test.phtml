@@ -1,0 +1,36 @@
+<?php
+/**@var Aureatelabs\ModuleName\ViewModel\Custom $viewModel*/
+$viewModel = $block->getData('view_model');
+?>
+HR
+<div id="custom-grid">
+    <table>
+       
+            <tr>
+            <th>Customer Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Birth Date</th>
+                <th>Image</th>    
+                <th>Address</th>
+                <th>Status</th>
+                <th>Hobbies</th>
+                <th>NewsLetter Subscription</th>
+
+            </tr>
+    
+        <?php
+            echo $viewModel->custom();
+        ?>
+    </table>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#custom-grid": {
+            "Kitchen_Knockout/js/grid": {}
+        }
+    }
+</script>

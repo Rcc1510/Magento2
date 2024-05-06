@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <move after="product.attributes" destination="custom.container" element="custom.block"/>
+    <referenceContainer name="content">
+      <container after="-" htmlClass="custom-container" htmlTag="div" name="custom.container">
+        <block class="Kitchen\Knockout\Block\Product\View" name="custom.block" template="Kitchen_Knockout::product/view/test.phtml">
+          <arguments>
+            <argument name="view_model" xsi:type="object">Kitchen\Knockout\Block\Custom</argument>
+          </arguments>
+        </block>
+      </container>
+    </referenceContainer>
+  </body>
+</page>
