@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+  <default>
+    <carriers>
+      <shipping1>
+        <active>1</active>
+        <model>Kitchen\Order\Model\Shipping\Shipping</model>
+        <name>Shipping Method</name>
+        <price>10</price>
+        <title>Shipping Method</title>
+      </shipping1>
+      <pickup>
+        <active>1</active>
+        <model>Kitchen\Order\Model\Shipping\Pickup</model>
+        <name>Pickup Method</name>
+        <price>0</price>
+        <title>Pickup Method</title>
+      </pickup>
+      <newship>
+        <active>1</active>
+        <model>Kitchen\Order\Model\Shipping\Newship</model>
+        <name>Dealer Method</name>
+        <price>10</price>
+        <title>Dealer Method</title>
+      </newship>
+    </carriers>
+  </default>
+</config>

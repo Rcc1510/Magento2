@@ -1,0 +1,167 @@
+<button id="btn1" class="btn1">Order</button>
+<button class="modal-edit" id="modal-edit">Edit Order</button>
+
+<div style="display: none;" id="modal-html">
+    <div id="popup">
+        <label><input type="radio" name="option" value="shipping">Shipping</label><br>
+        <label><input type="radio" name="option" value="pickup">Pickup</label><br>
+        <label><input type="radio" name="option" value="dealer_arrange_shipping">Dealer Arrange Shipping</label><br>
+    </div>
+</div>
+
+<div style="display: none;" id="modal-html-active">
+    <div id="popup">
+        <p> Please Make a Order First </p>
+    </div>
+</div>
+
+<script>
+    require(['jquery',
+        'Magento_Ui/js/modal/modal', //for popup modal
+        'mage/storage' //for ajax
+    ], function($, modal, storage) {
+
+        $(document).ready(function() {
+            //button in popup modal
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                buttons: [{
+                    text: $.mage.__('Save'),
+                    class: 'continueBtn',
+                    click: function() {
+                        var selectedOption = $('input[name="option"]:checked').val();
+                        if (selectedOption) {
+                            storage.post(
+                                'order/index/save',
+                                JSON.stringify({
+                                    "field": 'Ship Type',
+                                    "value": selectedOption
+                                }),
+                                true
+                            ).done(function(response) {
+                                // alert('Success');
+                                $('#modal-html').modal("closeModal");
+                            }).fail(function(response) {
+                                // alert('Error occurred.');
+                            });
+                            $('#modal-html').modal('closeModal');
+                        } else {
+                            alert('Please select an option.');
+                        }
+                    }
+                }]
+            };
+            //button in popup modal
+
+            var activeOption = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                buttons: [{
+                        text: $.mage.__('Close'),
+                        class: 'confirmBtnClass',
+                        click: function() {
+                            $('#modal-html-active').modal('closeModal');
+                        }
+                    },
+                    {
+                        text: $.mage.__('Delete'),
+                        class: 'confirmBtnClass',
+                        click: function() {
+                            storage.post(
+                                'order/index/delete',
+                            ).done(function(response) {
+                                $('#modal-html-active').modal("closeModal");
+                                $('#modal-html').modal(options).modal('openModal');
+
+
+                            }).fail(function(response) {
+                                // alert('Error occurred.');
+                            });
+                        }
+                    }
+                ],
+            };
+            //edit order
+            var editOrder = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                buttons: [{
+                    text: $.mage.__('Confirm'),
+                    class: 'editBtn',
+                    click: function () {
+                        var editOption = $('input[name="option"]:checked').val();
+                        if (editOption) {
+                        storage.post(
+                            'order/index/save',
+                            JSON.stringify({
+                                "field":'Ship Type',
+                                "value":editOption
+                            }),
+                            true
+                        ).done(function(response) {
+                            // alert('Success edit');
+                            $('#modal-html').modal("closeModal");
+                        }).fail(function(response) {
+                            // alert('edit Error occurred.');
+                        });
+                        } else {
+                            alert('Please select an option.');
+                        }
+                    }
+                }]
+            };
+            //AJAX CALL
+            $('#btn1').on('click', function() {
+                storage.get('order/index/index')
+                    .done(function(response) {
+                        //check is active 0 or 1
+                        if (response.isActive === 0) {
+                            $('#modal-html').modal(options).modal('openModal');
+                        } else if (response.isActive === 1) {
+                            $('#modal-html-active').modal(activeOption).modal('openModal');
+
+                        } else {
+                            alert('No active order found.');
+                        }
+                    })
+                    .fail(function() {
+                        console.error('Failed to fetch quote status');
+                    });
+            });
+            
+            $("#modal-edit").click(function() {
+                storage.get(
+                    'order/index/edit',
+                    '',
+                    true
+                    // return response controller file
+                ).done(function(response) {
+                    if (response.editOption !== undefined) {
+                        $('input[name="option"][value="' + response.editOption + '"]').prop('checked', true);
+                        $('#modal-html').modal(editOrder).modal("openModal");
+ 
+                    }
+                }).fail(function(response) {
+                    // alert('modal-edit Error occurred.');
+                });
+            });
+            if (window.checkoutConfig.shipping_types == null) {
+                $('#modal-html').modal(options).modal('openModal');
+            }
+            if (window.checkoutConfig.shipping_types === '') {
+                window.location.href = 'checkout/cart/index';
+                $('#modal-html').modal(options).modal('openModal'); 
+                 // Redirect to checkout cart page
+            } else {
+                
+            }
+
+            // edit quote
+            
+        });
+    });
+</script>

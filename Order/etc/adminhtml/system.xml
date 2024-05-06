@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+  <system>
+    <section id="carriers">
+      <group id="newship" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="102" translate="label" type="text">
+        <field canRestore="1" id="active" showInDefault="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+          <label>Is Active</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field canRestore="1" id="name" showInDefault="1" showInWebsite="1" sortOrder="1000" translate="label" type="text">
+          <label>Name</label>
+        </field>
+        <field canRestore="1" id="price" showInDefault="1" showInWebsite="1" sortOrder="1000" translate="label" type="text">
+          <label>Price</label>
+          <validate>validate-number validate-zero-or-greater</validate>
+        </field>
+        <field canRestore="1" id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+          <label>Title</label>
+        </field>
+        <label>Dealer Arrange Shipping</label>
+      </group>
+      <group id="pickup" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="101" translate="label" type="text">
+        <field canRestore="1" id="active" showInDefault="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+          <label>Is Active</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field canRestore="1" id="name" showInDefault="1" showInWebsite="1" sortOrder="1000" translate="label" type="text">
+          <label>Name</label>
+        </field>
+        <field canRestore="1" id="price" showInDefault="1" showInWebsite="1" sortOrder="1000" translate="label" type="text">
+          <label>Price</label>
+          <validate>validate-number validate-zero-or-greater</validate>
+        </field>
+        <field canRestore="1" id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+          <label>Title</label>
+        </field>
+        <label>Pickup Method</label>
+      </group>
+      <group id="shipping1" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="100" translate="label" type="text">
+        <field canRestore="1" id="active" showInDefault="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+          <label>Is Active</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field canRestore="1" id="name" showInDefault="1" showInWebsite="1" sortOrder="1000" translate="label" type="text">
+          <label>Name</label>
+        </field>
+        <field canRestore="1" id="price" showInDefault="1" showInWebsite="1" sortOrder="1000" translate="label" type="text">
+          <label>Price</label>
+          <validate>validate-number validate-zero-or-greater</validate>
+        </field>
+        <field canRestore="1" id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+          <label>Title</label>
+        </field>
+        <label>Shipping Method</label>
+      </group>
+    </section>
+  </system>
+</config>

@@ -1,0 +1,60 @@
+<?php
+// Order Items Template
+/** @var \Kitchen\Order\Block\Order\Items $block */
+?>
+<div class="table-wrapper order-items">
+    <table class="data table table-order-items" id="my-orders-table" summary="<?= $block->escapeHtml(__('Items Ordered')) ?>">
+        <caption class="table-caption"><?= $block->escapeHtml(__('Items Ordered')) ?></caption>
+        <thead>
+            <?php if ($block->isPagerDisplayed()) : ?>
+                <tr>
+                    <td colspan="8" data-block="order-items-pager-top" class="order-pager-wrapper order-pager-wrapper-top">
+                        <?= $block->getPagerHtml() ?>
+                    </td>
+                </tr>
+            <?php endif; ?>
+            <tr>
+                <th class="col name"><?= $block->escapeHtml(__('Product Name')) ?></th>
+                <th class="col sku"><?= $block->escapeHtml(__('SKU')) ?></th>
+                <th class="col price"><?= $block->escapeHtml(__('Price')) ?></th>
+                <th class="col qty"><?= $block->escapeHtml(__('Qty')) ?></th>
+                <th class="col subtotal"><?= $block->escapeHtml(__('Subtotal')) ?></th>
+                <th class="col residential"><?= $block->escapeHtml(__('Residential')) ?></th>
+                <th class="col liftgate"><?= $block->escapeHtml(__('Liftgate')) ?></th>
+                <th class="col delivery"><?= $block->escapeHtml(__('Delivery')) ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $items = $block->getItems(); ?>
+            <?php if ($items) : ?>
+                <?php foreach ($items as $item) : ?>
+                    <?php $giftMessage = null; ?>
+                    <tr>
+                        <td><?= $block->escapeHtml($item->getName()) ?></td>
+                        <td><?= $block->escapeHtml($item->getSku()) ?></td>
+                        <td><?= $block->escapeHtml($item->getPrice()) ?></td>
+                        <td><?= $block->escapeHtml($item->getQtyOrdered()) ?></td>
+                        <td><?= $block->escapeHtml($item->getRowTotal()) ?></td>
+                        <td><?= $block->escapeHtml($block->displayResidential($item)) ?></td>
+                        <td><?= $block->escapeHtml($block->displayLiftgate($item)) ?></td>
+                        <td><?= $block->escapeHtml($block->displayDelivery($item)) ?></td>
+                    </tr>
+                    <?php if ($block->giftMessageHelper->isMessagesAllowed('order_item', $item) && $item->getGiftMessageId()) : ?>
+                        <?php $giftMessage = $block->giftMessageHelper->getGiftMessageForEntity($item); ?>
+                        <!-- Rest of the code -->
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </tbody>
+        <tfoot>
+            <?php if ($block->isPagerDisplayed()) : ?>
+                <tr>
+                    <td colspan="8" data-block="order-items-pager-bottom" class="order-pager-wrapper order-pager-wrapper-bottom">
+                        <?= $block->getPagerHtml() ?>
+                    </td>
+                </tr>
+            <?php endif; ?>
+            <?= $block->getChildHtml('order_totals') ?>
+        </tfoot>
+    </table>
+</div>
